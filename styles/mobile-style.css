@@ -37,10 +37,12 @@
   
   
     .settings {
-        margin-top: 150px;
+        right: -100vw;
+        margin-top: 400px;
+        position: absolute;
         width: 100vw;
     }
-  
+
     .display-notes {
         position: relative;
         margin-left: 0;
