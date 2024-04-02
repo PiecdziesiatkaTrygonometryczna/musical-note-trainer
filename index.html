@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trener nut</title>
+  <link rel="stylesheet" href="tuner/style.css" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/dark-mode.css" />
+  <link rel="stylesheet" href="styles/checkbox.css" />
+  <link href="styles/mobile-style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+
+
+  <div class="tuner">
+
+    <canvas class="frequency-bars"></canvas>
+    <div class="meter">
+      <div class="meter-dot"></div>
+      <div class="meter-pointer"></div>
+    </div>
+    <div class="notes">
+      <div class="notes-list"></div>
+      <div class="frequency">
+        <span>Hz</span>
+      </div>
+    </div>
+    <div class="a4">A<sub>4</sub> = <span>440</span> Hz</div>
+    <label class="auto">
+      Auto
+      <input type="checkbox" checked />
+    </label>
+  </div>
+
+
+
+  <div class="notes-to-play">
+    <nav class="previous-notes"></nav>
+    <nav class="current-note"></nav>
+    <nav class="next-notes"></nav>
+  </div>
+
+
+
+  <div class="settings">
+    <form id="noteForm">
+      <h4>Wybierz nuty do wyświetlania:</h4>
+      <!-- loop to generate button for each note -->
+      <script>
+        const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
+        notes.forEach(note => {
+          document.write(`
+              <label>
+                <input type="checkbox" name="note" value="${note}" style="display: none;" />
+                <button type="button" onclick="toggleNote('${note}')" class="note-button" value="${note}">${note}</button>
+              </label>
+            `);
+        });
+      </script>
+    </form>
+
+    <button class="menu" onclick="selectAllNotes()">Wszystkie</button>
+    <button class="menu" onclick="selectAllNaturalNotes()">Całe</button>
+    <button class="menu" onclick="selectAllSharpNotes()">Krzyżyki</button>
+    <button class="menu" onclick="unselectAllNotes()">Wyczyść</button>
+    <nav>Interwał (sek): <input id="intervalInput" type="number" step="0.05" min="0.3" max="10.0" value="3.0"
+        placeholder="Interwał (sek)" /></nav>
+    <label class="custom-checkbox" for="noInterval">
+      <input type="checkbox" id="noInterval"> Zmień dźwięk po zagraniu dobrze
+      <span class="checkmark"></span>
+    </label>
+    <button class="display-notes" onclick="startProgram()">Start</button>
+    <button class="display-notes" onclick="stopDisplayingNotes()">Stop</button>
+    <button id="mode-toggle"><i id="mode-icon" class="fas fa-sun"></i></button>
+  </div>
+
+
+
+
+
+  <script src="scripts/settings.js"></script>
+  <script src="scripts/displaying-notes.js"></script>
+  <script src="scripts/playing-notes.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aubiojs@0.1.1/build/aubio.min.js"></script>
+  <script src="tuner/tuner.js"></script>
+  <script src="tuner/meter.js"></script>
+  <script src="tuner/frequency-bars.js"></script>
+  <script src="tuner/notes.js"></script>
+  <script src="tuner/app.js"></script>
+  <script src="styles/dark-mode.js"></script>
+</body>
+
+</html>
