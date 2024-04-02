@@ -9,6 +9,10 @@ document.getElementById('noInterval').addEventListener('change', function () {
     document.getElementById('intervalInput').disabled = this.checked;
 });
 
+document.getElementById('noOctave').addEventListener('change', function () {
+    document.getElementById('octaveInput').disabled = !this.checked;
+});
+
 
 // function to select or unselect a specific note to later display it or not
 function toggleNote(note) {
