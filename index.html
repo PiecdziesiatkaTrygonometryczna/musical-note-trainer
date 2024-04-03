@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles/checkbox.css" />
   <link rel="stylesheet" href="styles/advanced-settings.css" />
   <link href="styles/mobile-style.css" rel="stylesheet">
+  <link href="styles/fretboard.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link
     href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
@@ -91,16 +92,20 @@
       <input type="checkbox" id="noInterval"> Zmień dźwięk po zagraniu dobrze
       <span class="checkmark"></span>
     </label>
-
+    <button class="display-notes" id="toggleFretboardButton">Włącz gryf gitary</button>
   </div>
 
 
-  <div></div>
-  <div></div>
   <div class="start-stop">
     <button id="start-button" class="display-notes" onclick="startProgram()">Start</button>
     <button class="display-notes" onclick="stopDisplayingNotes()">Stop</button>
     <button class="display-notes" id="toggleSettings">Ustawienia</button>
+  </div>
+
+
+
+  <div class="fretboard" id="fretboardContainer" style="display: none;">
+    <img src="img/fretboard.png" alt="fretboard">
   </div>
 
 
