@@ -6,6 +6,8 @@ let withInterval = false;
 const CURRENT_NOTE_CLASS = 'current-note';
 const NEXT_NOTES_CLASS = 'next-notes';
 const PREVIOUS_NOTES_CLASS = 'previous-notes';
+let applyAdvancedCheckbox = document.getElementById('applyAdvanced');
+
 
 // if intervalinput is disabled, start displaying without interval
 // else start the program with user interval value
@@ -34,7 +36,14 @@ function validateInterval(interval) {
 
 // generate a random note within the selected checkboxes
 function generateRandomNote() {
-    const selectedNotes = Array.from(document.querySelectorAll('input[name="note"]:checked'), checkbox => checkbox.value);
+    let selectedNotes;
+    if (applyAdvancedCheckbox.checked) {
+        selectedNotes = advancedSelectedNotes;
+        withOctave = true;
+    } else {
+        selectedNotes = Array.from(document.querySelectorAll('input[name="note"]:checked'), checkbox => checkbox.value);
+        withOctave = false;
+    }
     const currentOctaveChosen = document.querySelector('#octaveInput').value;
     const randomIndex = Math.floor(Math.random() * selectedNotes.length);
     if (document.getElementById('octaveInput').disabled === true) {
