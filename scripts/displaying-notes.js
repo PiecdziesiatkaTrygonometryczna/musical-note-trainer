@@ -46,10 +46,10 @@ function generateRandomNote() {
     }
     const currentOctaveChosen = document.querySelector('#octaveInput').value;
     const randomIndex = Math.floor(Math.random() * selectedNotes.length);
-    if (document.getElementById('octaveInput').disabled === true) {
-        return selectedNotes[randomIndex];
-    } else {
+    if (document.getElementById("withOctave").checked && !document.getElementById("applyAdvanced").checked) {;
         return selectedNotes[randomIndex] + currentOctaveChosen;
+    } else {
+        return selectedNotes[randomIndex];
     }
 }
 
