@@ -37,6 +37,11 @@ function populateNoteButtons() {
       buttonsDiv.appendChild(button);
     });
 
+    // need a little space between note buttons and its selectors
+    let spaceDiv = document.createElement("div");
+    spaceDiv.classList.add("space");
+    buttonsDiv.appendChild(spaceDiv);
+
     // button to select all notes in spesific octave
     let selectOctaveButton = document.createElement("button");
     selectOctaveButton.textContent = "Wszystkie";
@@ -70,12 +75,8 @@ function populateNoteButtons() {
       unselectOctaveNotes(octave);
     };
     buttonsDiv.appendChild(unselectAllButton);
-
-
-
-
-
     octaveDiv.appendChild(buttonsDiv);
+
     noteButtonsContainer.appendChild(octaveDiv);
   }
 }
