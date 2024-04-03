@@ -128,15 +128,19 @@ function selectSharpNotesInOctave(octave) {
 }
 
 
-
+let advancedSelectedNotes = [];
 
 // this function is called every time a note button is pressed
 function toggleNoteSelection(note) {
   let button = document.querySelector(`button[value="${note}"]`);
   button.classList.toggle("selected");
-  // TODO
+  if (button.classList.contains("selected")) {
+    advancedSelectedNotes.push(note);
+  } else {
+    advancedSelectedNotes = advancedSelectedNotes.filter(selectedNote => selectedNote !== note);
+  }
+  console.log("zaznaczone nuty:" + advancedSelectedNotes);
 }
-
 // initailly generate note buttons 
 populateNoteButtons();
 
@@ -144,40 +148,52 @@ populateNoteButtons();
 
 // function to select all notes from all octaves
 function advancedSelectAllNotes() {
+  advancedSelectedNotes = [];
   let noteButtons = document.querySelectorAll("#noteButtonsContainer .advanced-note-button");
   noteButtons.forEach(button => {
     button.classList.add("selected");
+    advancedSelectedNotes.push(button.value);
   });
+  console.log("zaznaczone nuty:" + advancedSelectedNotes);
 }
 
 
 
 function advancedSelectWholeNotes() {
+  advancedSelectedNotes = [];
   let noteButtons = document.querySelectorAll("#noteButtonsContainer .advanced-note-button");
   noteButtons.forEach(button => {
     let note = button.textContent;
     if (!note.includes('♯')) {
       button.classList.add("selected");
+      advancedSelectedNotes.push(button.value);
     } else {
       button.classList.remove("selected");
     }
   });
+  console.log("Zaznaczone nuty: " + advancedSelectedNotes);
 }
 
 
+
 function advancedSelectSharpNotes() {
+  advancedSelectedNotes = [];
   let noteButtons = document.querySelectorAll("#noteButtonsContainer .advanced-note-button");
   noteButtons.forEach(button => {
     let note = button.textContent;
     if (note.includes('♯')) {
       button.classList.add("selected");
+      advancedSelectedNotes.push(button.value);
     } else {
       button.classList.remove("selected");
     }
   });
+  console.log("Zaznaczone nuty: " + advancedSelectedNotes);
 }
 
 function advancedUnselectAllNotes() {
+  advancedSelectedNotes = [];
+  console.log("zaznaczone nuty:" + advancedSelectedNotes);
   let noteButtons = document.querySelectorAll("#noteButtonsContainer .advanced-note-button");
   noteButtons.forEach(button => {
     button.classList.remove("selected");
