@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles/style.css" />
   <link rel="stylesheet" href="styles/dark-mode.css" />
   <link rel="stylesheet" href="styles/checkbox.css" />
+  <link rel="stylesheet" href="styles/advanced-settings.css" />
   <link href="styles/mobile-style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link
@@ -87,9 +88,11 @@
       </label>
       <input id="octaveInput" type="number" step="1" min="1" max="8" value="3" placeholder="oktawa (sek)" disabled />
     </nav>
-
+    <button class="display-notes" id="toggleAdvancedSettings" onclick="openAdvancedSettingsWindow()">Zaawansowane</button>
 
   </div>
+
+
   <div></div>
   <div></div>
   <div class="start-stop">
@@ -99,6 +102,12 @@
   </div>
 
 
+<div id="advancedSettingsWindow" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeAdvancedSettingsWindow()">&times;</span>
+    <h2>Zaawansowane</h2>
+  </div>
+</div>
 
 
 
@@ -106,6 +115,7 @@
   <script src="scripts/displaying-notes.js"></script>
   <script src="scripts/playing-notes.js"></script>
   <script src="scripts/toggle-settings.js"></script>
+  <script src="scripts/advanced-settings.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://cdn.jsdelivr.net/npm/aubiojs@0.1.1/build/aubio.min.js"></script>
