@@ -83,6 +83,7 @@ function updateNotesDisplay() {
     revertColorOfCurrentNote();
     nextNotes.push(generateRandomNote()); // add random note as last index of next notes
     setNextNotesNav(nextNotes.join(" ")); // update next notes nav
+    console.log(nextNotes);
 }
 
 // handle adding note to previous notes array
