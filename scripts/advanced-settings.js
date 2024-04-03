@@ -1,3 +1,6 @@
+let advancedSelectedNotes = [];
+
+
 function openAdvancedSettingsWindow() {
   document.getElementById("advancedSettingsWindow").style.display = "block";
 }
@@ -84,15 +87,23 @@ function populateNoteButtons() {
 
 // and corresponding functions to handle selection within a specific octabe 
 function selectOctaveNotes(octave) {
+  // first remove them so they are not duplicated
+  advancedSelectedNotes = advancedSelectedNotes.filter(note => !note.endsWith(octave));
+
   let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
   noteButtons.forEach(button => {
     if (button.textContent.endsWith(octave)) {
       button.classList.add("selected");
+      advancedSelectedNotes.push(button.value);
     }
   });
+  console.log("Zaznaczone nuty: " + advancedSelectedNotes);
 }
 
+
 function unselectOctaveNotes(octave) {
+  advancedSelectedNotes = advancedSelectedNotes.filter(note => !note.endsWith(octave));
+  console.log("Zaznaczone nuty: " + advancedSelectedNotes);
   let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
   noteButtons.forEach(button => {
     if (button.textContent.endsWith(octave)) {
@@ -106,29 +117,41 @@ function selectWholeNotesInOctave(octave) {
   noteButtons.forEach(button => {
     if (button.textContent.endsWith(octave)) {
       if (!button.textContent.includes('♯')) {
-        button.classList.add("selected");
+        if (!button.classList.contains("selected")) {
+          button.classList.add("selected");
+          advancedSelectedNotes.push(button.value);
+        }
       } else {
         button.classList.remove("selected");
+        advancedSelectedNotes = advancedSelectedNotes.filter(note => note !== button.value);
       }
     }
   });
+  console.log("Zaznaczone nuty: " + advancedSelectedNotes);
 }
+
+
 
 function selectSharpNotesInOctave(octave) {
   let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
   noteButtons.forEach(button => {
     if (button.textContent.endsWith(octave)) {
       if (button.textContent.includes('♯')) {
-        button.classList.add("selected");
+        if (!button.classList.contains("selected")) {
+          button.classList.add("selected");
+          advancedSelectedNotes.push(button.value);
+        }
       } else {
         button.classList.remove("selected");
+        advancedSelectedNotes = advancedSelectedNotes.filter(note => note !== button.value);
       }
     }
   });
+  console.log("Zaznaczone nuty: " + advancedSelectedNotes);
 }
 
 
-let advancedSelectedNotes = [];
+
 
 // this function is called every time a note button is pressed
 function toggleNoteSelection(note) {
