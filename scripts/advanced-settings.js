@@ -7,23 +7,47 @@ function closeAdvancedSettingsWindow() {
 }
 
 
-// Function to populate notes based on selected octave
-function populateNotes() {
-  // Get selected octave value
-  let octave = document.getElementById("octaveSelect").value;
-  // Get the select element for notes
-  let noteSelect = document.getElementById("noteSelect");
-  // Clear existing options
-  noteSelect.innerHTML = "";
-  // Array of notes for the selected octave
-  const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
-  // Generate options for each note in the selected octave
-  notes.forEach(note => {
-    let option = document.createElement("option");
-    option.text = note + octave;
-    noteSelect.add(option);
-  });
+// function to populate note buttons for all octaves
+function populateNoteButtons() {
+  let noteButtonsContainer = document.getElementById("noteButtonsContainer");
+
+  noteButtonsContainer.innerHTML = "";
+  const numOctaves = 8;
+
+  for (let octave = 1; octave <= numOctaves; octave++) {   // generate a div for each octave
+    let octaveDiv = document.createElement("div");
+    octaveDiv.classList.add("octave-container");
+
+    let label = document.createElement("div");
+    label.textContent = "Oktawa " + octave;
+    label.classList.add("octave-label");
+    octaveDiv.appendChild(label);
+
+    let buttonsDiv = document.createElement("div");
+    buttonsDiv.classList.add("note-buttons");
+
+    const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];     // and buttons for each note in the octave  
+    notes.forEach(note => {
+      let button = document.createElement("button");
+      button.textContent = note + octave;
+      button.value = note + octave;
+      button.onclick = function() {
+        toggleNoteSelection(this.value);
+      };
+      buttonsDiv.appendChild(button);
+    });
+    octaveDiv.appendChild(buttonsDiv);
+    noteButtonsContainer.appendChild(octaveDiv);
+  }
 }
 
-// Call populateNotes function initially to populate notes for the default octave
-populateNotes();
+// this function is called every time a note button is pressed
+function toggleNoteSelection(note) {
+  let button = document.querySelector(`button[value="${note}"]`);
+  button.classList.toggle("selected");
+  // TODO
+}
+
+// initailly generate note buttons 
+populateNoteButtons();
+
