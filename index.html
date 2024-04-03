@@ -88,7 +88,8 @@
       </label>
       <input id="octaveInput" type="number" step="1" min="1" max="8" value="3" placeholder="oktawa (sek)" disabled />
     </nav>
-    <button class="display-notes" id="toggleAdvancedSettings" onclick="openAdvancedSettingsWindow()">Zaawansowane</button>
+    <button class="display-notes" id="toggleAdvancedSettings"
+      onclick="openAdvancedSettingsWindow()">Zaawansowane</button>
 
   </div>
 
@@ -96,18 +97,18 @@
   <div></div>
   <div></div>
   <div class="start-stop">
-    <button class="display-notes" onclick="startProgram()">Start</button>
+    <button id="start-button" class="display-notes" onclick="startProgram()">Start</button>
     <button class="display-notes" onclick="stopDisplayingNotes()">Stop</button>
     <button class="display-notes" id="toggleSettings">Ustawienia</button>
   </div>
 
 
-<div id="advancedSettingsWindow" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeAdvancedSettingsWindow()">&times;</span>
-    <h2>Zaawansowane</h2>
+  <div id="advancedSettingsWindow" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAdvancedSettingsWindow()">&times;</span>
+      <h2>Zaawansowane</h2>
+    </div>
   </div>
-</div>
 
 
 
