@@ -51,3 +51,44 @@ function toggleNoteSelection(note) {
 // initailly generate note buttons 
 populateNoteButtons();
 
+
+
+// Function to select all notes
+function advancedSelectAllNotes() {
+  let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
+  noteButtons.forEach(button => {
+    button.classList.add("selected");
+  });
+}
+
+function advancedSelectWholeNotes() {
+  let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
+  noteButtons.forEach(button => {
+    let note = button.textContent;
+    if (!note.includes('♯')) {
+      button.classList.add("selected");
+    } else {
+      button.classList.remove("selected");
+    }
+  });
+}
+
+
+function advancedSelectSharpNotes() {
+  let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
+  noteButtons.forEach(button => {
+    let note = button.textContent;
+    if (note.includes('♯')) {
+      button.classList.add("selected");
+    } else {
+      button.classList.remove("selected");
+    }
+  });
+}
+
+function advancedUnselectAllNotes() {
+  let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
+  noteButtons.forEach(button => {
+    button.classList.remove("selected");
+  });
+}
