@@ -33,6 +33,7 @@ function populateNoteButtons() {
       button.onclick = function () {
         toggleNoteSelection(this.value);
       };
+      button.classList.add("advanced-note-button");
       buttonsDiv.appendChild(button);
     });
 
@@ -43,6 +44,7 @@ function populateNoteButtons() {
       selectOctaveNotes(octave);
     };
     buttonsDiv.appendChild(selectOctaveButton);
+
 
     // button to select whole notes (without sharps) in specific octave
     let selectWholeNotesButton = document.createElement("button");
@@ -141,14 +143,16 @@ populateNoteButtons();
 
 // function to select all notes from all octaves
 function advancedSelectAllNotes() {
-  let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
+  let noteButtons = document.querySelectorAll("#noteButtonsContainer .advanced-note-button");
   noteButtons.forEach(button => {
     button.classList.add("selected");
   });
 }
 
+
+
 function advancedSelectWholeNotes() {
-  let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
+  let noteButtons = document.querySelectorAll("#noteButtonsContainer .advanced-note-button");
   noteButtons.forEach(button => {
     let note = button.textContent;
     if (!note.includes('♯')) {
@@ -161,7 +165,7 @@ function advancedSelectWholeNotes() {
 
 
 function advancedSelectSharpNotes() {
-  let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
+  let noteButtons = document.querySelectorAll("#noteButtonsContainer .advanced-note-button");
   noteButtons.forEach(button => {
     let note = button.textContent;
     if (note.includes('♯')) {
@@ -173,7 +177,7 @@ function advancedSelectSharpNotes() {
 }
 
 function advancedUnselectAllNotes() {
-  let noteButtons = document.querySelectorAll("#noteButtonsContainer button");
+  let noteButtons = document.querySelectorAll("#noteButtonsContainer .advanced-note-button");
   noteButtons.forEach(button => {
     button.classList.remove("selected");
   });
