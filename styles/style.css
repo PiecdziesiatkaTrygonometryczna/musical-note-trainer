@@ -213,6 +213,7 @@ input.custom-checkbox:disabled,
     opacity: 0.5;
     cursor: not-allowed;
     background-color: grey;
+    color: white;
 
 }
 
