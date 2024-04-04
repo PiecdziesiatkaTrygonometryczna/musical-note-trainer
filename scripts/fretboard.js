@@ -38,7 +38,7 @@ function toggleAllCheckboxes(checkbox) {
 
     otherCheckboxes.forEach(function (cb) {
         if (cb !== checkbox) {
-            cb.checked = !checkbox.checked;
+            cb.checked = checkbox.checked;
         }
     });
 }
@@ -53,7 +53,7 @@ function toggleAllCheckboxes2(checkbox) {
 
     otherCheckboxes.forEach(function (cb) {
         if (cb !== checkbox) {
-            cb.checked = !checkbox.checked;
+            cb.checked = checkbox.checked;
         }
     });
 }
