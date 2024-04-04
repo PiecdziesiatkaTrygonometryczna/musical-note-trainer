@@ -1,108 +1,64 @@
-document.getElementById("stringECheckboxToggle").addEventListener("change", function() {
-    var stringImage = document.getElementById("1st-string-wholes");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
+// create an event listener and displays or hides specific notes for each string
+function handleCheckboxChange(checkboxId, imageId) {
+    const checkbox = document.getElementById(checkboxId);
+    const stringImage = document.getElementById(imageId);
+    console.log("Checkbox:", checkbox);
+    console.log("Image:", stringImage);
+    checkbox.addEventListener('change', function () {
+        console.log("Checkbox state changed:", checkbox.checked);
+        stringImage.style.display = checkbox.checked ? "inline" : "none";
+        console.log("Image display:", stringImage.style.display);
+    });
+}
 
-document.getElementById("stringECheckboxToggle2").addEventListener("change", function() {
-    var stringImage = document.getElementById("1st-string-sharps");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
+handleCheckboxChange("stringECheckboxToggle", "1st-string-wholes");
+handleCheckboxChange("stringECheckboxToggle2", "1st-string-sharps");
+handleCheckboxChange("stringACheckboxToggle", "2nd-string-wholes");
+handleCheckboxChange("stringACheckboxToggle2", "2nd-string-sharps");
+handleCheckboxChange("stringDCheckboxToggle", "3rd-string-wholes");
+handleCheckboxChange("stringDCheckboxToggle2", "3rd-string-sharps");
+handleCheckboxChange("stringGCheckboxToggle", "4th-string-wholes");
+handleCheckboxChange("stringGCheckboxToggle2", "4th-string-sharps");
+handleCheckboxChange("stringBCheckboxToggle", "5th-string-wholes");
+handleCheckboxChange("stringBCheckboxToggle2", "5th-string-sharps");
+handleCheckboxChange("stringHighECheckboxToggle", "6th-string-wholes");
+handleCheckboxChange("stringHighECheckboxToggle2", "6th-string-sharps");
 
-
-document.getElementById("stringACheckboxToggle").addEventListener("change", function() {
-    var stringImage = document.getElementById("2nd-string-wholes");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
+function toggleVisibility(noteType, checkbox) {
+    var notesImages = document.getElementsByClassName("notes-image");
+    for (var i = 0; i < notesImages.length; i++) {
+        if (notesImages[i].id.includes(noteType)) {
+            notesImages[i].style.display = checkbox.checked ? "inline-block" : "none";
+        }
     }
-});
+}
 
-document.getElementById("stringACheckboxToggle2").addEventListener("change", function() {
-    var stringImage = document.getElementById("2nd-string-sharps");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
+function toggleAllCheckboxes(checkbox) {
+    var otherCheckboxes = document.querySelectorAll('[id^="string"]:not([id*="2"])');
 
-document.getElementById("stringDCheckboxToggle").addEventListener("change", function() {
-    var stringImage = document.getElementById("3rd-string-wholes");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
+    otherCheckboxes.forEach(function (cb) {
+        if (cb !== checkbox) {
+            cb.checked = !checkbox.checked;
+        }
+    });
+}
 
-document.getElementById("stringDCheckboxToggle2").addEventListener("change", function() {
-    var stringImage = document.getElementById("3rd-string-sharps");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
+function toggleAndCheck(checkbox) {
+    toggleVisibility('string-wholes', checkbox);
+    toggleAllCheckboxes(checkbox);
+}
 
-document.getElementById("stringGCheckboxToggle").addEventListener("change", function() {
-    var stringImage = document.getElementById("4th-string-wholes");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
+function toggleAllCheckboxes2(checkbox) {
+    var otherCheckboxes = document.querySelectorAll('[id^="string"][id*="2"]');
 
-document.getElementById("stringGCheckboxToggle2").addEventListener("change", function() {
-    var stringImage = document.getElementById("4th-string-sharps");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
+    otherCheckboxes.forEach(function (cb) {
+        if (cb !== checkbox) {
+            cb.checked = !checkbox.checked;
+        }
+    });
+}
 
-document.getElementById("stringBCheckboxToggle").addEventListener("change", function() {
-    var stringImage = document.getElementById("5th-string-wholes");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
-
-document.getElementById("stringBCheckboxToggle2").addEventListener("change", function() {
-    var stringImage = document.getElementById("5th-string-sharps");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
-
-document.getElementById("stringHighECheckboxToggle").addEventListener("change", function() {
-    var stringImage = document.getElementById("6th-string-wholes");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
-
-document.getElementById("stringHighECheckboxToggle2").addEventListener("change", function() {
-    var stringImage = document.getElementById("6th-string-sharps");
-    if (this.checked) {
-        stringImage.style.display = "inline";
-    } else {
-        stringImage.style.display = "none";
-    }
-});
+function toggleAndCheck2(checkbox) {
+    toggleVisibility('string-sharps', checkbox);
+    toggleAllCheckboxes2(checkbox);
+}
