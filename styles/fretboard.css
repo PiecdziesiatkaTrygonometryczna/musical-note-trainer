@@ -1,19 +1,24 @@
 .fretboard {
     width: 20px;
-    display: none;
+    /* display: none; */
     position: relative;
 }
 
 .fretboard img {
     position: absolute;
     top: 0;
-    left: 20px;
+    left: 40px;
 }
-#stringImage {
-    display: none;
+
+.notes-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* display: none; */
 }
 
 .option1t {
-    margin-top: 200px;
-    left: 100px;
+    display: flex;
+    position: absolute;
+    top: 140px;
 }
