@@ -104,9 +104,14 @@
 
 
 
-  <div class="fretboard" id="fretboardContainer" style="display: none;">
+  <div class="fretboard" id="fretboardContainer">
     <img src="img/fretboard.png" alt="fretboard">
-  </div>
+    <img src="img/1stString.png" alt="1st-string" id="stringImage">
+    <nav class="option1t">
+      <input type="checkbox" id="stringCheckboxToggle">
+      <label for="stringCheckboxToggle">Włącz dźwięki na pierwszej strunie</label>
+    </nav>
+</div>
 
 
   <div id="advancedSettingsWindow" class="modal">
@@ -167,6 +172,7 @@
   <script src="scripts/toggle-settings.js"></script>
   <script src="scripts/advanced-settings.js"></script>
   <script src="scripts/select-instruments.js"></script>
+  <script src="scripts/fretboard.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://cdn.jsdelivr.net/npm/aubiojs@0.1.1/build/aubio.min.js"></script>

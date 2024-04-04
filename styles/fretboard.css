@@ -1,4 +1,19 @@
 .fretboard {
-width: 20px;
+    width: 20px;
+    display: none;
+    position: relative;
+}
 
+.fretboard img {
+    position: absolute;
+    top: 0;
+    left: 20px;
+}
+#stringImage {
+    display: none;
+}
+
+.option1t {
+    margin-top: 200px;
+    left: 100px;
 }
