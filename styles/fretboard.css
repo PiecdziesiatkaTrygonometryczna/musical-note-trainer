@@ -22,3 +22,28 @@
     position: absolute;
     top: 140px;
 }
+.option2t {
+    display: flex;
+    position: absolute;
+    top: 115px;
+}
+.option3t {
+    display: flex;
+    position: absolute;
+    top: 90px;
+}
+.option4t {
+    display: flex;
+    position: absolute;
+    top: 65px;
+}
+.option5t {
+    display: flex;
+    position: absolute;
+    top: 40px;
+}
+.option6t {
+    display: flex;
+    position: absolute;
+    top: 15px;
+}
