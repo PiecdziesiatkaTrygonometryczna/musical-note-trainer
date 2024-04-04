@@ -7,6 +7,7 @@ const fretboardContainer = document.getElementById('fretboardContainer');
 toggleFretboardButton.addEventListener('click', function () {
     if (fretboardContainer.style.display === 'none') {
         pianoContainer.style.display = 'none'
+        bassContainer.style.display = 'none';
         fretboardContainer.style.display = 'block';
     } else {
         fretboardContainer.style.display = 'none';

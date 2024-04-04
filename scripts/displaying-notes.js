@@ -130,6 +130,15 @@ function setCurrentNoteNav(note) {
     currentNoteNav.innerHTML = `<nav>${noteHtml}</nav>`;
 }
 
+
+// function setCurrentNoteNav(note) {
+//     const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
+//     const noteHtml = note.replace('♯', '<span class="sharp-symbol">♯</span>');
+//     currentNoteNav.innerHTML = `<nav><img src="img/C5note.png"></img></nav>`;
+// }
+
+
+
 function setNextNotesNav(string) {
     const nextNotesNav = document.querySelector(`.${NEXT_NOTES_CLASS}`);
     const noteHtml = string.replaceAll('♯', '<span class="sharp-symbol">♯</span>');
