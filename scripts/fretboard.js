@@ -20,13 +20,8 @@ toggleFretboardButton.addEventListener('click', function () {
 // create an event listener and displays or hides specific notes for each string
 function handleCheckboxChange(checkboxId, imageId) {
     const checkbox = document.getElementById(checkboxId);
-    const stringImage = document.getElementById(imageId);
-    console.log("Checkbox:", checkbox);
-    console.log("Image:", stringImage);
     checkbox.addEventListener('change', function () {
-        console.log("Checkbox state changed:", checkbox.checked);
         stringImage.style.display = checkbox.checked ? "inline" : "none";
-        console.log("Image display:", stringImage.style.display);
     });
 }
 

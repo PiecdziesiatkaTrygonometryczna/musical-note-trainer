@@ -142,9 +142,32 @@ function setCurrentNoteNav(note) {
 
 function setCurrentImgNoteNav(note) {
     const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
-    const noteHtml = note[0];
-    currentNoteNav.innerHTML = `<nav><img src="img/${noteHtml}4note.png"></img></nav>`;
+    let noteHtml = note.replace('♯', '');
+    let imgSrc = `img/${noteHtml}note.png`;
+    if (noteHtml.length === 1) {
+        imgSrc = `img/${noteHtml}4note.png`;
+    }
+
+
+    // Create a new Image element
+    const img = new Image();
+
+    // Set up event handlers for loading and error
+    img.onload = function () {
+        // If the image loads successfully, set its source as the innerHTML
+        currentNoteNav.innerHTML = `<nav><img src="${imgSrc}"></img></nav>`;
+    };
+
+    img.onerror = function () {
+        // If the image fails to load, replace it with the note HTML
+        noteHtml = note.replace('♯', '<span class="sharp-symbol">♯</span>');
+        currentNoteNav.innerHTML = `<nav>${noteHtml}</nav>`;
+    };
+
+    // Set the src attribute to trigger the loading process
+    img.src = imgSrc;
 }
+
 
 function emptyCurrentNoteNav() {
     const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);

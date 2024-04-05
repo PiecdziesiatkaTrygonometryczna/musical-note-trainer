@@ -86,11 +86,15 @@ function toggleButtons() {
 lettersCheckbox.addEventListener("change", function () {
     if (this.checked) {
         notesCheckbox.checked = false;
+    } else {
+        notesCheckbox.checked = true;
     }
 });
 
 notesCheckbox.addEventListener("change", function () {
     if (this.checked) {
         lettersCheckbox.checked = false; 
+    } else {
+        lettersCheckbox.checked = true;
     }
 });
