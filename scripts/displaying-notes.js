@@ -186,6 +186,8 @@ function setNextNotesNav(string) {
     const nextNotesNav = document.querySelector(`.${NEXT_NOTES_CLASS}`);
     if (notesCheckbox.checked) {
         nextNotesNav.style.display = 'none';
+    } else {
+        nextNotesNav.style.display = 'block';
     }
     const noteHtml = string.replaceAll('♯', '<span class="sharp-symbol">♯</span>');
     nextNotesNav.innerHTML = `<nav>${noteHtml}</nav>`;
