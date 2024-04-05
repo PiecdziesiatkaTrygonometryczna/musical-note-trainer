@@ -4,6 +4,7 @@ let displayNotesInterval;
 let withoutInterval = false;
 let withInterval = false;
 let selectedNotes;
+var currentNoteToCompare;
 const CURRENT_NOTE_CLASS = 'current-note';
 const NEXT_NOTES_CLASS = 'next-notes';
 const PREVIOUS_NOTES_CLASS = 'previous-notes';
@@ -86,14 +87,13 @@ function startDisplayingNotes(interval) {
 function updateNotesDisplay() {
 
     const lettersCheckbox = document.getElementById("letters");
-    const notesCheckbox = document.getElementById("notes");
 
 
     const nextNotes = getNextNotes();
     const currentNote = getCurrentNote();
     if (currentNote) { addNoteToPreviousNotes(currentNote) } // add current note to previous notes array if it exists
-    if (lettersCheckbox.checked) { // remove the first note from the next notes array and display it as the current note
-        setCurrentNoteNav(nextNotes.shift());
+    if (lettersCheckbox.checked) {
+        setCurrentNoteNav(nextNotes.shift()); // remove the first note from the next notes array and display it as the current note
     } else {
         setCurrentImgNoteNav(nextNotes.shift());
     }
@@ -134,6 +134,7 @@ function getPreviousNotes() {
 
 
 function setCurrentNoteNav(note) {
+    currentNoteToCompare = note;
     const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
     const noteHtml = note.replace('♯', '<span class="sharp-symbol">♯</span>');
     currentNoteNav.innerHTML = `<nav>${noteHtml}</nav>`;
@@ -142,6 +143,7 @@ function setCurrentNoteNav(note) {
 
 function setCurrentImgNoteNav(note) {
     const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
+    currentNoteToCompare = note;
     let noteHtml = note.replace('♯', '');
     let imgSrc = `img/${noteHtml}note.png`;
     if (noteHtml.length === 1) {
@@ -182,6 +184,9 @@ function emptyCurrentNoteNav() {
 
 function setNextNotesNav(string) {
     const nextNotesNav = document.querySelector(`.${NEXT_NOTES_CLASS}`);
+    if (notesCheckbox.checked) {
+        nextNotesNav.style.display = 'none';
+    }
     const noteHtml = string.replaceAll('♯', '<span class="sharp-symbol">♯</span>');
     nextNotesNav.innerHTML = `<nav>${noteHtml}</nav>`;
 }
@@ -195,4 +200,5 @@ function setPreviousNotesNav(string) {
 function revertColorOfCurrentNote() {
     const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
     currentNoteNav.style.color = '';
+    currentNoteNav.style.backgroundColor = '';
 }
