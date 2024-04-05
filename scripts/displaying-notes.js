@@ -63,7 +63,7 @@ function initializeNextNotesArray() {
 
 function startDisplaying() {
     stopDisplayingNotes(); // if any notes are being displayed, stop it
-    setCurrentNoteNav("");
+    emptyCurrentNoteNav();
     setPreviousNotesNav("");
     initializeNextNotesArray(); // generate initial set of notes
 }
@@ -84,10 +84,19 @@ function startDisplayingNotes(interval) {
 
 // helper function to display next note, and move every note 1 place left
 function updateNotesDisplay() {
+
+    const lettersCheckbox = document.getElementById("letters");
+    const notesCheckbox = document.getElementById("notes");
+
+
     const nextNotes = getNextNotes();
     const currentNote = getCurrentNote();
     if (currentNote) { addNoteToPreviousNotes(currentNote) } // add current note to previous notes array if it exists
-    setCurrentNoteNav(nextNotes.shift()); // remove the first note from the next notes array and display it as the current note
+    if (lettersCheckbox.checked) { // remove the first note from the next notes array and display it as the current note
+        setCurrentNoteNav(nextNotes.shift());
+    } else {
+        setCurrentImgNoteNav(nextNotes.shift());
+    }
     revertColorOfCurrentNote();
     nextNotes.push(generateRandomNote()); // add random note as last index of next notes
     setNextNotesNav(nextNotes.join(" ")); // update next notes nav
@@ -131,11 +140,20 @@ function setCurrentNoteNav(note) {
 }
 
 
-// function setCurrentNoteNav(note) {
-//     const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
-//     const noteHtml = note.replace('♯', '<span class="sharp-symbol">♯</span>');
-//     currentNoteNav.innerHTML = `<nav><img src="img/C5note.png"></img></nav>`;
-// }
+function setCurrentImgNoteNav(note) {
+    const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
+    const noteHtml = note[0];
+    currentNoteNav.innerHTML = `<nav><img src="img/${noteHtml}4note.png"></img></nav>`;
+}
+
+function emptyCurrentNoteNav() {
+    const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
+    if (lettersCheckbox.checked) {
+        setCurrentNoteNav("");
+    } else {
+        currentNoteNav.innerHTML = `<nav><img src="img/empty-staff.png"></img></nav>`;
+    }
+}
 
 
 
