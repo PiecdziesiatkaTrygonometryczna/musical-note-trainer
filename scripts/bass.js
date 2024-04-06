@@ -20,14 +20,14 @@ function handleCheckboxChange(checkboxId, imageId) {
     });
 }
 
-handleCheckboxChange("stringEBassCheckboxToggle", "1st-bass-wholes");
-handleCheckboxChange("stringEBassCheckboxToggle2", "1st-bass-sharps");
-handleCheckboxChange("stringABassCheckboxToggle", "2nd-bass-wholes");
-handleCheckboxChange("stringABassCheckboxToggle2", "2nd-bass-sharps");
-handleCheckboxChange("stringDBassCheckboxToggle", "3rd-bass-wholes");
-handleCheckboxChange("stringDBassCheckboxToggle2", "3rd-bass-sharps");
-handleCheckboxChange("stringGBassCheckboxToggle", "4th-bass-wholes");
-handleCheckboxChange("stringGBassCheckboxToggle2", "4th-bass-sharps");
+handleCheckboxChange("EBassCheckboxToggle", "1st-bass-wholes");
+handleCheckboxChange("EBassCheckboxToggle2", "1st-bass-sharps");
+handleCheckboxChange("ABassCheckboxToggle", "2nd-bass-wholes");
+handleCheckboxChange("ABassCheckboxToggle2", "2nd-bass-sharps");
+handleCheckboxChange("DBassCheckboxToggle", "3rd-bass-wholes");
+handleCheckboxChange("DBassCheckboxToggle2", "3rd-bass-sharps");
+handleCheckboxChange("GBassCheckboxToggle", "4th-bass-wholes");
+handleCheckboxChange("GBassCheckboxToggle2", "4th-bass-sharps");
 
 function toggleVisibility(noteType, checkbox) {
     var notesImages = document.getElementsByClassName("notes-image");
@@ -39,27 +39,8 @@ function toggleVisibility(noteType, checkbox) {
 }
 
 
-
-
-
-{/* <nav class="option7t">
-<input type="checkbox" id="toggleWholeBassCheckbox" onchange="toggleAndCheckBass(this)" checked>
-<label for="toggleWholeBassCheckbox"></label>
-
-<input type="checkbox" id="toggleSharpBassCheckbox" onchange="toggleAndCheckBass2(this)" checked>
-<label for="toggleSharpBassCheckbox"></label>
-</nav> */}
-
-
-
-
-
-
-
-
-
 function toggleAllBassCheckboxes(checkbox) {
-    var otherCheckboxes = document.querySelectorAll('[id^="bass"]:not([id*="2"])');
+    var otherCheckboxes = document.querySelectorAll('[id$="BassCheckboxToggle"]');
 
     otherCheckboxes.forEach(function (cb) {
         if (cb !== checkbox) {
@@ -73,8 +54,8 @@ function toggleAndCheckBass(checkbox) {
     toggleAllBassCheckboxes(checkbox);
 }
 
-function toggleAllCheckboxes2(checkbox) {
-    var otherCheckboxes = document.querySelectorAll('[id^="bass"][id*="2"]');
+function toggleAllBassCheckboxes2(checkbox) {
+    var otherCheckboxes = document.querySelectorAll('[id$="BassCheckboxToggle2"]');
 
     otherCheckboxes.forEach(function (cb) {
         if (cb !== checkbox) {
@@ -85,5 +66,5 @@ function toggleAllCheckboxes2(checkbox) {
 
 function toggleAndCheckBass2(checkbox) {
     toggleVisibility('bass-sharps', checkbox);
-    toggleAllbassCheckboxes2(checkbox);
+    toggleAllBassCheckboxes2(checkbox);
 }
