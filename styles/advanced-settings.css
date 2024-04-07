@@ -38,6 +38,11 @@
   color: #fff;
 }
 
+#noteButtonsContainer button.selected:disabled {
+  background-color: #ccc;
+  color: #999;
+}
+
 
 .octave-container {
   margin-bottom: 20px;

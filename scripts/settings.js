@@ -134,6 +134,14 @@ function toggleButtons() {
     const applyAdvancedCheckbox = document.getElementById('applyAdvanced');
     const settingsContainer = document.querySelector('.settings2');
     const buttons = settingsContainer.querySelectorAll('.menu, .display-notes, .custom-checkbox input, .note-button, #octaveInput');
+
+    const rightSectionButtons = document.querySelectorAll('.right-section button');
+
+    rightSectionButtons.forEach(button => {
+        button.disabled = false;
+    });
+
+
     buttons.forEach(button => {
         if (button.id !== 'toggleAdvancedSettings' && button.id !== 'noInterval' && button.id !== 'Interval' && button.id !== 'letters' && button.id !== 'notes') {
             button.disabled = applyAdvancedCheckbox.checked;
@@ -141,11 +149,15 @@ function toggleButtons() {
     });
 }
 
-
 function untoggleButtons() {
     const settingsContainer = document.querySelector('.settings2');
     const buttons = settingsContainer.querySelectorAll('.menu, .display-notes, .custom-checkbox input, .note-button, #octaveInput');
     const withOctaveCheckbox = document.getElementById('withOctave');
+    const rightSectionButtons = document.querySelectorAll('.right-section button');
+
+    rightSectionButtons.forEach(button => {
+        button.disabled = true;
+    });
 
     buttons.forEach(button => {
         if (button.id !== 'toggleAdvancedSettings' && button.id !== 'noInterval' && button.id !== 'Interval' && button.id !== 'letters' && button.id !== 'notes') {
@@ -161,7 +173,13 @@ function untoggleButtons() {
 
 // event listeners to enable / disable simple settings
 const simpleCheckbox = document.getElementById('simpleCheckbox');
-const applyAdvancedCheckbox = document.getElementById('applyAdvanced');
+applyAdvancedCheckbox = document.getElementById('applyAdvanced');
+
+
+
+window.addEventListener('load', function () {
+    untoggleButtons(); // disable advanced buttons when the page is loaded
+});
 
 simpleCheckbox.addEventListener('change', function () {
     if (this.checked) {
