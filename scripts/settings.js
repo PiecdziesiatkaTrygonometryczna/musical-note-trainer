@@ -10,9 +10,67 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // when nointerval is checked, disable intervalinput
-document.getElementById('noInterval').addEventListener('change', function () {
-    document.getElementById('intervalInput').disabled = this.checked;
+document.addEventListener("DOMContentLoaded", function () {
+    const intervalCheckbox = document.getElementById('Interval');
+    const noIntervalCheckbox = document.getElementById('noInterval');
+    const intervalInput = document.getElementById('intervalInput');
+
+    // Check interval checkbox by default
+    intervalCheckbox.checked = true;
+
+    // Disable interval input if noInterval checkbox is checked
+    noIntervalCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            intervalCheckbox.checked = false;
+            intervalInput.disabled = true;
+        } else {
+            intervalInput.disabled = false;
+        }
+    });
+
+    // Disable noInterval checkbox if interval checkbox is checked
+    intervalCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            noIntervalCheckbox.checked = false;
+        }
+    });
+
+    // Toggle checkboxes when one is clicked
+    intervalCheckbox.addEventListener('click', function () {
+        noIntervalCheckbox.checked = !this.checked;
+        intervalInput.disabled = !this.checked;
+    });
+
+    noIntervalCheckbox.addEventListener('click', function () {
+        intervalCheckbox.checked = !this.checked;
+        intervalInput.disabled = this.checked;
+    });
 });
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const acceptAnyOctaveCheckbox = document.getElementById('acceptAnyOctave');
+    const withOctaveCheckbox = document.getElementById('withOctave');
+    const octaveInput = document.getElementById('octaveInput');
+
+    acceptAnyOctaveCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            withOctaveCheckbox.checked = false;
+            octaveInput.disabled = true;
+        }
+    });
+
+    withOctaveCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            acceptAnyOctaveCheckbox.checked = false;
+            octaveInput.disabled = false;
+        }
+    });
+});
+
+
 
 document.getElementById('withOctave').addEventListener('change', function () {
     document.getElementById('octaveInput').disabled = !this.checked;
@@ -74,7 +132,7 @@ function unselectAllNotes() {
 
 function toggleButtons() {
     const applyAdvancedCheckbox = document.getElementById('applyAdvanced');
-    const settingsContainer = document.querySelector('.settings');
+    const settingsContainer = document.querySelector('.settings2');
     const buttons = settingsContainer.querySelectorAll('.menu, .display-notes, .custom-checkbox input, .note-button, #octaveInput');
     buttons.forEach(button => {
         if (button.id !== 'toggleAdvancedSettings' && button.id !== 'noInterval') {
@@ -93,7 +151,7 @@ lettersCheckbox.addEventListener("change", function () {
 
 notesCheckbox.addEventListener("change", function () {
     if (this.checked) {
-        lettersCheckbox.checked = false; 
+        lettersCheckbox.checked = false;
     } else {
         lettersCheckbox.checked = true;
     }
