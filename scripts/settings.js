@@ -59,6 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (this.checked) {
             withOctaveCheckbox.checked = false;
             octaveInput.disabled = true;
+        } else {
+            withOctaveCheckbox.checked = true;
+            octaveInput.disabled = false;
         }
     });
 
@@ -66,16 +69,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (this.checked) {
             acceptAnyOctaveCheckbox.checked = false;
             octaveInput.disabled = false;
+        } else {
+            acceptAnyOctaveCheckbox.checked = true;
+            octaveInput.disabled = true;
         }
     });
 });
 
-
-
-document.getElementById('withOctave').addEventListener('change', function () {
-    document.getElementById('octaveInput').disabled = !this.checked;
-    withOctave = this.checked;
-});
 
 
 // function to select or unselect a specific note to later display it or not
@@ -135,11 +135,54 @@ function toggleButtons() {
     const settingsContainer = document.querySelector('.settings2');
     const buttons = settingsContainer.querySelectorAll('.menu, .display-notes, .custom-checkbox input, .note-button, #octaveInput');
     buttons.forEach(button => {
-        if (button.id !== 'toggleAdvancedSettings' && button.id !== 'noInterval') {
+        if (button.id !== 'toggleAdvancedSettings' && button.id !== 'noInterval' && button.id !== 'Interval' && button.id !== 'letters' && button.id !== 'notes') {
             button.disabled = applyAdvancedCheckbox.checked;
         }
     });
 }
+
+
+function untoggleButtons() {
+    const settingsContainer = document.querySelector('.settings2');
+    const buttons = settingsContainer.querySelectorAll('.menu, .display-notes, .custom-checkbox input, .note-button, #octaveInput');
+    const withOctaveCheckbox = document.getElementById('withOctave');
+
+    buttons.forEach(button => {
+        if (button.id !== 'toggleAdvancedSettings' && button.id !== 'noInterval' && button.id !== 'Interval' && button.id !== 'letters' && button.id !== 'notes') {
+            if (button.id === 'octaveInput' && !withOctaveCheckbox.checked) {
+                button.disabled = true; // disable octaveInput if withOctaveCheckbox is not checked
+            } else {
+                button.disabled = false;
+            }
+        }
+    });
+}
+
+
+// event listeners to enable / disable simple settings
+const simpleCheckbox = document.getElementById('simpleCheckbox');
+const applyAdvancedCheckbox = document.getElementById('applyAdvanced');
+
+simpleCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+        applyAdvancedCheckbox.checked = false;
+        untoggleButtons();
+    } else {
+        applyAdvancedCheckbox.checked = true;
+        toggleButtons();
+    }
+});
+
+applyAdvancedCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+        toggleButtons();
+        simpleCheckbox.checked = false;
+    } else {
+        simpleCheckbox.checked = true;
+        untoggleButtons();
+    }
+});
+
 
 lettersCheckbox.addEventListener("change", function () {
     if (this.checked) {

@@ -190,7 +190,7 @@
             Interwał (sek):
           </label>
           <input id="intervalInput" type="number" step="0.05" min="0.3" max="10.0" value="3.0"
-          placeholder="Interwał (sek)" />
+            placeholder="Interwał (sek)" />
         </nav>
         <nav>
           lub
@@ -218,88 +218,89 @@
             <input type="checkbox" id="notes"> <span class="checkmark"></span> Nuty
           </label>
         </nav>
-        
 
-        <form id="noteForm">
-          <h2>Dźwięki do wyświetlania</h2>
-          <h3><input type="checkbox">Proste</h3>
-          <!-- loop to generate button for each note -->
-          <script>
-            const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
-            notes.forEach(note => {
-              const noteHtml = note.replace('♯', '<span class="sharp-symbol">♯</span>');
-              document.write(`
+        <div>
+          <form id="noteForm">
+            <h2>Dźwięki do wyświetlania</h2>
+
+            <h3><input type="checkbox" id="simpleCheckbox" checked>Proste</h3>
+            <!-- loop to generate button for each note -->
+            <script>
+              const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
+              notes.forEach(note => {
+                const noteHtml = note.replace('♯', '<span class="sharp-symbol">♯</span>');
+                document.write(`
               <label>
                 <input type="checkbox" name="note" value="${note}" style="display: none; " checked />
                 <button type="button" onclick="toggleNote('${note}')" class="note-button selected" value="${note}">${noteHtml}</button>
               </label>
             `);
-            });
-          </script>
-        </form>
+              });
+            </script>
+          </form>
 
-        <button class="menu" onclick="selectAllNotes()">Wszystkie</button>
-        <button class="menu" onclick="selectAllNaturalNotes()">Całe</button>
-        <button class="menu" onclick="selectAllSharpNotes()">Krzyżyki</button>
-        <button class="menu" onclick="unselectAllNotes()">Wyczyść</button>
-        <nav>
-          <label class="custom-checkbox">
-            <input type="checkbox" id="acceptAnyOctave">Akceptuj dźwięk niezależnie od zagranej oktawy
-            <span class="checkmark"></span>
-          </label>
-        </nav>
-        <nav>
-          <label class="custom-checkbox" for="withOctave">
-            <input type="checkbox" id="withOctave">Akceptuj wyłącznie konkretną oktawę:
-            <span class="checkmark"></span>
-          </label>
-          <input id="octaveInput" type="number" step="1" min="1" max="8" value="3" placeholder="oktawa (sek)"
-            disabled />
-        </nav>
-        
-      </div>
-      <h3><input type="checkbox" id="applyAdvanced" onchange="toggleButtons()">Zaawansowane</h3>
-      <div class="octave-controls">
-        <button onclick="advancedSelectAllNotes()">Zaznacz wszystkie nuty</button>
-        <button onclick="advancedSelectWholeNotes()">Zaznacz tylko całe</button>
-        <button onclick="advancedSelectSharpNotes()">Zaznacz tylko krzyżyki</button>
-        <button onclick="advancedUnselectAllNotes()">Wyczyść</button>
-      </div>
-      <div class="instrument-buttons">
-        <button id="guitarButton">Gitara</button>
-        <div id="guitarOptions" style="display: none; max-height: 200px; overflow-y: auto;">
-          <ul>
-            <li><button id="guitar24FretsButton">Gitara 24 progi</button></li>
-            <li><button id="guitar22FretsButton">Gitara 22 progi</button></li>
-            <li><button id="guitar21FretsButton">Gitara 21 progów</button></li>
-            <li><button id="guitar7StringsButton">Gitara 7 strunowa</button></li>
-            <li><button id="guitar8StringsButton">Gitara 8 strunowa</button></li>
-            <li><button id="guitarEStringButton">Struna niska E</button></li>
-            <li><button id="guitarEString2OctavesButton">Struna niska E - 2 oktawy</button></li>
-            <li><button id="guitarDropDStringButton">Struna niska - drop D</button></li>
-            <li><button id="guitarDropDString2OctavesButton">Struna niska - drop D - 2 oktawy</button></li>
-            <li><button id="guitarAStringButton">Struna A</button></li>
-            <li><button id="guitarAString2OctavesButton">Struna A - 2 oktawy</button></li>
-            <li><button id="guitarDStringButton">Struna D</button></li>
-            <li><button id="guitarDString2OctavesButton">Struna D - 2 oktawy</button></li>
-            <li><button id="guitarGStringButton">Struna G</button></li>
-            <li><button id="guitarGString2OctavesButton">Struna G - 2 oktawy</button></li>
-            <li><button id="guitarBStringButton">Struna B</button></li>
-            <li><button id="guitarBString2OctavesButton">Struna B - 2 oktawy</button></li>
-            <li><button id="guitarHighEStringButton">Struna wysoka E</button></li>
-            <li><button id="guitarHighEString2OctavesButton">Struna wysoka E - 2 oktawy</button></li>
-          </ul>
+          <button class="menu" onclick="selectAllNotes()">Wszystkie</button>
+          <button class="menu" onclick="selectAllNaturalNotes()">Całe</button>
+          <button class="menu" onclick="selectAllSharpNotes()">Krzyżyki</button>
+          <button class="menu" onclick="unselectAllNotes()">Wyczyść</button>
+          <nav>
+            <label class="custom-checkbox">
+              <input type="checkbox" id="acceptAnyOctave">Akceptuj dźwięk niezależnie od zagranej oktawy
+              <span class="checkmark"></span>
+            </label>
+          </nav>
+          <nav>
+            <label class="custom-checkbox" for="withOctave">
+              <input type="checkbox" id="withOctave">Akceptuj wyłącznie konkretną oktawę:
+              <span class="checkmark" id="withOctave"></span>
+            </label>
+            <input id="octaveInput" type="number" step="1" min="1" max="8" value="3" placeholder="oktawa (sek)"
+              disabled />
+          </nav>
+
+
+          <h3><input type="checkbox" id="applyAdvanced">Zaawansowane</h3>
+          <div class="octave-controls">
+            <button onclick="advancedSelectAllNotes()">Zaznacz wszystkie nuty</button>
+            <button onclick="advancedSelectWholeNotes()">Zaznacz tylko całe</button>
+            <button onclick="advancedSelectSharpNotes()">Zaznacz tylko krzyżyki</button>
+            <button onclick="advancedUnselectAllNotes()">Wyczyść</button>
+          </div>
+          <div class="instrument-buttons">
+            <button id="guitarButton">Gitara</button>
+            <div id="guitarOptions" style="display: none; max-height: 200px; overflow-y: auto;">
+              <ul>
+                <li><button id="guitar24FretsButton">Gitara 24 progi</button></li>
+                <li><button id="guitar22FretsButton">Gitara 22 progi</button></li>
+                <li><button id="guitar21FretsButton">Gitara 21 progów</button></li>
+                <li><button id="guitar7StringsButton">Gitara 7 strunowa</button></li>
+                <li><button id="guitar8StringsButton">Gitara 8 strunowa</button></li>
+                <li><button id="guitarEStringButton">Struna niska E</button></li>
+                <li><button id="guitarEString2OctavesButton">Struna niska E - 2 oktawy</button></li>
+                <li><button id="guitarDropDStringButton">Struna niska - drop D</button></li>
+                <li><button id="guitarDropDString2OctavesButton">Struna niska - drop D - 2 oktawy</button></li>
+                <li><button id="guitarAStringButton">Struna A</button></li>
+                <li><button id="guitarAString2OctavesButton">Struna A - 2 oktawy</button></li>
+                <li><button id="guitarDStringButton">Struna D</button></li>
+                <li><button id="guitarDString2OctavesButton">Struna D - 2 oktawy</button></li>
+                <li><button id="guitarGStringButton">Struna G</button></li>
+                <li><button id="guitarGString2OctavesButton">Struna G - 2 oktawy</button></li>
+                <li><button id="guitarBStringButton">Struna B</button></li>
+                <li><button id="guitarBString2OctavesButton">Struna B - 2 oktawy</button></li>
+                <li><button id="guitarHighEStringButton">Struna wysoka E</button></li>
+                <li><button id="guitarHighEString2OctavesButton">Struna wysoka E - 2 oktawy</button></li>
+              </ul>
+            </div>
+
+            <!--instrument buttons are generated  -->
+          </div>
+          <div id="noteButtonsContainer">
+            <!-- all buttons are initially generated here -->
+          </div>
         </div>
-
-        <!--instrument buttons are generated  -->
       </div>
-      <div id="noteButtonsContainer">
-        <!-- all buttons are initially generated here -->
-      </div>
-
     </div>
   </div>
-
 
 
 
