@@ -61,3 +61,12 @@
   margin-left: 30px;
 }
 
+.simple-vs-advanced {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-section,
+.right-section {
+  flex-grow: 1;
+}
