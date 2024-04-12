@@ -160,6 +160,20 @@ body {
     grid-column: span 2;
 }
 
+.previous-notes .sharp-symbol {
+    position: relative;
+    top: -10px;
+    right: 10px;
+    font-size: 70%;
+}
+
+.previous-notes .octave-symbol {
+    position: relative;
+    top: 10px;
+    right: 10px;
+    font-size: 70%;
+}
+
 .next-notes {
     margin-left: 30px;
     text-align: left;

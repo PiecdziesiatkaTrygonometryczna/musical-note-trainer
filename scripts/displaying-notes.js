@@ -100,12 +100,13 @@ function updateNotesDisplay() {
     revertColorOfCurrentNote();
     nextNotes.push(generateRandomNote()); // add random note as last index of next notes
     setNextNotesNav(nextNotes.join(" ")); // update next notes nav
-    console.log(nextNotes);
 }
 
 // handle adding note to previous notes array
 function addNoteToPreviousNotes(note) {
     const previousNotes = getPreviousNotes();
+    console.log("previoiusNotes length: " + previousNotes.length);
+    console.log(previousNotes)
     if (previousNotes.length >= 5) { // prevent previous notes from storing more than 5 notes
         previousNotes.shift();
     }
@@ -129,8 +130,18 @@ function getNextNotes() {
 
 function getPreviousNotes() {
     const previousNotesNav = document.querySelector(`.${PREVIOUS_NOTES_CLASS}`);
-    return previousNotesNav.textContent.trim().split(" ");
+    if (previousNotesNav) {
+        // Check if the previous notes navigation element exists
+        const noteText = previousNotesNav.textContent.trim();
+        if (noteText !== "") {
+            // If there are previous notes, split them into an array and return
+            return noteText.split(" ");
+        }
+    }
+    // If there are no previous notes or the navigation element doesn't exist, return an empty array
+    return [];
 }
+
 
 
 function setCurrentNoteNav(note) {
@@ -204,10 +215,13 @@ function setNextNotesNav(string) {
 
 function setPreviousNotesNav(string) {
     const previousNotesNav = document.querySelector(`.${PREVIOUS_NOTES_CLASS}`);
-    const noteWithoutSpaces = string.split(' ').join('');
-    const noteHtml = noteWithoutSpaces.replaceAll('♯', '<span class="sharp-symbol">♯</span>');
-    previousNotesNav.innerHTML = `<nav>${noteHtml}</nav>`;
+    if (previousNotesNav) {
+        // Check if the previous notes navigation element exists
+        const noteHtml = string.replaceAll('♯', '<span class="sharp-symbol">♯</span>');
+        previousNotesNav.innerHTML = `<nav>${noteHtml}</nav>`;
+    }
 }
+
 
 function revertColorOfCurrentNote() {
     const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
