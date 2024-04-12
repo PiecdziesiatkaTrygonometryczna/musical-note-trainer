@@ -217,10 +217,18 @@ function setPreviousNotesNav(string) {
     const previousNotesNav = document.querySelector(`.${PREVIOUS_NOTES_CLASS}`);
     if (previousNotesNav) {
         // Check if the previous notes navigation element exists
-        const noteHtml = string.replaceAll('♯', '<span class="sharp-symbol">♯</span>');
+        const noteHtml = string.replace(/[♯\d]/g, (match) => {
+            if (match === '♯') {
+                return '<span class="sharp-symbol">' + match + '</span>';
+            } else if (/\d/.test(match)) {
+                return '<span class="octave-symbol">' + match + '</span>';
+            }
+            return match;
+        });
         previousNotesNav.innerHTML = `<nav>${noteHtml}</nav>`;
     }
 }
+
 
 
 function revertColorOfCurrentNote() {
