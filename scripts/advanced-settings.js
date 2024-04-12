@@ -163,6 +163,9 @@ function toggleNoteSelection(note) {
     advancedSelectedNotes = advancedSelectedNotes.filter(selectedNote => selectedNote !== note);
   }
   console.log("zaznaczone nuty:" + advancedSelectedNotes);
+  submitButton.disabled = advancedSelectedNotes.length < 2;
+
+
 }
 // initailly generate note buttons 
 populateNoteButtons();
