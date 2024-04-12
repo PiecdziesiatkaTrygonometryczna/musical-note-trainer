@@ -204,14 +204,19 @@ function emptyCurrentNoteNav() {
 
 function setNextNotesNav(string) {
     const nextNotesNav = document.querySelector(`.${NEXT_NOTES_CLASS}`);
-    if (notesCheckbox.checked) {
-        nextNotesNav.style.display = 'none';
-    } else {
-        nextNotesNav.style.display = 'block';
+    if (nextNotesNav) {
+        const noteHtml = string.replace(/[♯\d]/g, (match) => {
+            if (match === '♯') {
+                return '<span class="sharp-symbol">' + match + '</span>';
+            } else if (/\d/.test(match)) {
+                return '<span class="octave-symbol">' + match + '</span>';
+            }
+            return match;
+        });
+        nextNotesNav.innerHTML = `<nav>${noteHtml}</nav>`;
     }
-    const noteHtml = string.replaceAll('♯', '<span class="sharp-symbol">♯</span>');
-    nextNotesNav.innerHTML = `<nav>${noteHtml}</nav>`;
 }
+
 
 function setPreviousNotesNav(string) {
     const previousNotesNav = document.querySelector(`.${PREVIOUS_NOTES_CLASS}`);

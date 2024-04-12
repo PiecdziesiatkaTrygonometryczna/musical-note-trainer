@@ -181,6 +181,19 @@ body {
     grid-column: span 2;
 }
 
+.next-notes .sharp-symbol {
+    position: relative;
+    top: -10px;
+    font-size: 70%;
+}
+
+.next-notes .octave-symbol {
+    position: relative;
+    top: 10px;
+    left: -5px;
+    font-size: 70%;
+}
+
 .note-button {
     font-size: 15px;
 }
