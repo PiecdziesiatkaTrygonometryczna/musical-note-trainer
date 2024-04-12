@@ -225,3 +225,12 @@ function advancedUnselectAllNotes() {
     button.classList.remove("selected");
   });
 }
+
+// Add event listener to the window for keydown event
+window.addEventListener('keydown', function(event) {
+  // Check if the pressed key is Enter and if the advanced settings window is open
+  if (event.key === 'Enter' && document.getElementById('advancedSettingsWindow').style.display === 'block') {
+      // Close the advanced settings window
+      closeAdvancedSettingsWindow();
+  }
+});
