@@ -159,12 +159,18 @@ function setCurrentNoteNav(note) {
 
 function setCurrentImgNoteNav(note) {
     const bassNotes = [
+        'C2', 'Csharp2', 'D2', 'Dsharp2', 'E2', 'F2', 'Fsharp2', 'G2', 'Gsharp2',
         'A2', 'Asharp2', 'B2', 'C3', 'Csharp3', 'D3', 'Dsharp3', 'E3', 'F3', 'Fsharp3', 'G3', 'Gsharp3',
-        'A3', 'Asharp3', 'B3'];
-
-    const trebleNotes = ['C4', 'Csharp4', 'D4', 'Dsharp4', 'E4', 'F4', 'Fsharp4', 'G4', 'Gsharp4',
-        'A4', 'Asharp4', 'B4', 'C5', 'Csharp5', 'D5', 'Dsharp5', 'E5', 'F5', 'Fsharp5', 'G5', 'Gsharp5'
+        'A3', 'Asharp3', 'B3'
     ];
+
+
+    const trebleNotes = [
+        'C4', 'Csharp4', 'D4', 'Dsharp4', 'E4', 'F4', 'Fsharp4', 'G4', 'Gsharp4',
+        'A4', 'Asharp4', 'B4', 'C5', 'Csharp5', 'D5', 'Dsharp5', 'E5', 'F5', 'Fsharp5', 'G5', 'Gsharp5',
+        'A5', 'Asharp5', 'B5', 'C6'
+    ];
+
 
 
 
