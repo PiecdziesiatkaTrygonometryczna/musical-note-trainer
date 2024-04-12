@@ -63,14 +63,13 @@ body {
 .current-note nav .sharp-symbol {
     position: absolute;
     top: 0;
-    right: -10px;
     font-size: 70%;
 }
 
 .current-note nav .octave-symbol {
     position: absolute;
     bottom: 0;
-    right: -30px;
+    right: 10px;
     font-size: 60%;
 }
 
