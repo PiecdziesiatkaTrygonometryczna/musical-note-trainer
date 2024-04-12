@@ -158,9 +158,20 @@ function setCurrentNoteNav(note) {
 
 
 function setCurrentImgNoteNav(note) {
+    const bassNotes = [
+        'A2', 'Asharp2', 'B2', 'C3', 'Csharp3', 'D3', 'Dsharp3', 'E3', 'F3', 'Fsharp3', 'G3', 'Gsharp3',
+        'A3', 'Asharp3', 'B3'];
+
+    const trebleNotes = ['C4', 'Csharp4', 'D4', 'Dsharp4', 'E4', 'F4', 'Fsharp4', 'G4', 'Gsharp4',
+        'A4', 'Asharp4', 'B4', 'C5', 'Csharp5', 'D5', 'Dsharp5', 'E5', 'F5', 'Fsharp5', 'G5', 'Gsharp5'
+    ];
+
+
+
     const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
     currentNoteToCompare = note;
     let noteHtml = note.replace('♯', 'sharp');
+    console.log(noteHtml);
     let imgSrc;
     if (/\d/.test(noteHtml)) {
         imgSrc = `img/${noteHtml}note.png`;
@@ -177,7 +188,13 @@ function setCurrentImgNoteNav(note) {
     // Set up event handlers for loading and error
     img.onload = function () {
         // If the image loads successfully, set its source as the innerHTML
-        currentNoteNav.innerHTML = `<nav><img src="${imgSrc}"></img></nav>`;
+        if (bassNotes.includes(noteHtml)) {
+            currentNoteNav.innerHTML = `<nav><img src="img/empty-staff.png"><img src="${imgSrc}"></img></nav>`;
+        }
+        if (trebleNotes.includes(noteHtml)) {
+            currentNoteNav.innerHTML = `<nav><img src="${imgSrc}"></img><img src="img/empty-bass.png"></nav>`;
+        }
+
     };
 
     img.onerror = function () {
@@ -196,7 +213,7 @@ function emptyCurrentNoteNav() {
     if (lettersCheckbox.checked) {
         setCurrentNoteNav("");
     } else {
-        currentNoteNav.innerHTML = `<nav><img src="img/empty-staff.png"></img></nav>`;
+        currentNoteNav.innerHTML = `<nav><img src="img/empty-staff.png"></img><img src="img/empty-bass.png"></img></nav>`;
     }
 }
 
