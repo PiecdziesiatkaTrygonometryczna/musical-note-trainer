@@ -177,16 +177,17 @@ function setCurrentImgNoteNav(note) {
     const currentNoteNav = document.querySelector(`.${CURRENT_NOTE_CLASS}`);
     currentNoteToCompare = note;
     let noteHtml = note.replace('♯', 'sharp');
-    console.log(noteHtml);
-    let imgSrc;
+    console.log("noteHTML: " + noteHtml);
+
     if (/\d/.test(noteHtml)) {
-        imgSrc = `img/${noteHtml}note.png`;
-        console.log(imgSrc);
     } else {
-        imgSrc = `img/${noteHtml}4note.png`;
-        console.log(imgSrc);
+        noteHtml = noteHtml + "4"
     }
 
+    let imgSrc = isDarkMode ? `img/notes-white/${noteHtml}note.png` : `img/notes-black/${noteHtml}note.png`;
+
+
+    console.log("imgSRC: " + imgSrc);
 
     // Create a new Image element
     const img = new Image();
@@ -195,10 +196,10 @@ function setCurrentImgNoteNav(note) {
     img.onload = function () {
         // If the image loads successfully, set its source as the innerHTML
         if (bassNotes.includes(noteHtml)) {
-            currentNoteNav.innerHTML = `<nav><img src="img/empty-staff.png"><img src="${imgSrc}"></img></nav>`;
+            currentNoteNav.innerHTML = isDarkMode ? `<nav><img src="img/notes-white/empty-staff.png"><img src="${imgSrc}"></img></nav>` : `<nav><img src="img/notes-black/empty-staff.png"><img src="${imgSrc}"></img></nav>`;
         }
         if (trebleNotes.includes(noteHtml)) {
-            currentNoteNav.innerHTML = `<nav><img src="${imgSrc}"></img><img src="img/empty-bass.png"></nav>`;
+            currentNoteNav.innerHTML = isDarkMode ? `<nav><img src="${imgSrc}"></img><img src="img/notes-white/empty-bass.png"></nav>` : `<nav><img src="${imgSrc}"></img><img src="img/notes-black/empty-bass.png"></nav>`;
         }
 
     };
@@ -220,7 +221,7 @@ function emptyCurrentNoteNav() {
     if (lettersCheckbox.checked) {
         setCurrentNoteNav("");
     } else {
-        currentNoteNav.innerHTML = `<nav><img src="img/empty-staff.png"></img><img src="img/empty-bass.png"></img></nav>`;
+        currentNoteNav.innerHTML = isDarkMode ? `<nav><img src="img/notes-white/empty-staff.png"></img><img src="img/notes-white/empty-bass.png"></img></nav>` : `<nav><img src="img/notes-black/empty-staff.png"></img><img src="img/notes-black/empty-bass.png"></img></nav>`;
     }
 }
 

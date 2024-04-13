@@ -1,9 +1,11 @@
+let isDarkMode = false;
 const modeToggleBtn = document.getElementById('mode-toggle');
 const modeIcon = document.getElementById('mode-icon');
 const body = document.body;
 
 modeToggleBtn.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
+    isDarkMode = !isDarkMode;
 
     if (body.classList.contains('dark-mode')) {
         modeIcon.classList.remove('fa-sun');
