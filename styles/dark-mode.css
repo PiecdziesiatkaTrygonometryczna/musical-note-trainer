@@ -26,7 +26,3 @@ body.dark-mode{
 .dark-mode .modal-content {
     background-color: rgba(18, 18, 18, 0.8);
 }
-
-.dark-mode .instrument-icon {
-    background-color: rgb(255, 255, 255, 0.5);
-}
