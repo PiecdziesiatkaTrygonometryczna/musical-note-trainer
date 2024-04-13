@@ -206,6 +206,7 @@ function setCurrentImgNoteNav(note) {
     img.onerror = function () {
         // If the image fails to load, replace it with the note HTML
         noteHtml = note.replace('♯', '<span class="sharp-symbol">♯</span>');
+        noteHtml = noteHtml.replace(/\d/g, '<span class="octave-symbol">$&</span>');
         currentNoteNav.innerHTML = `<nav>${noteHtml}</nav>`;
     };
 
